@@ -1,8 +1,11 @@
+set shell=/bin/bash
+set clipboard=unnamed
 set number
 set rnu
 set listchars=eol:$,tab:>\ ,trail:~,extends:>,precedes:<
 "set list
 imap jj <Esc>
+set path=.,/usr/include,/Library/Developer/CommandLineTools/usr/include/c++/v1/,,
 
 "Autocomplete
 inoremap <expr> ` TabComplete()
@@ -41,11 +44,33 @@ Plug '42Paris/42header'
 Plug 'honza/vim-snippets'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'NLKNguyen/c-syntax.vim'
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'vim-airline/vim-airline'
+Plug 'blueyed/vim-diminactive'
+Plug 'airblade/vim-gitgutter'
+Plug 'frazrepo/vim-rainbow'
+Plug 'easymotion/vim-easymotion'
+Plug 'Valloric/ListToggle'
 call plug#end()
 
+map <Leader> <Plug>(easymotion-prefix)
 
+let g:rainbow_active = 1
+let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
+
+"gitgutter option
+set updatetime=100
+
+"NERDTree
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+let NERDTreeIgnore=['\.o$', '\~$']
+"autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+
+let g:syntastic_always_populate_loc_list = 1
 " Enable norminette-vim (and gcc)
-let g:syntastic_c_checkers = ['norminette', 'gcc']
+let g:syntastic_c_checkers = ['gcc'] "add norminette back
 let g:syntastic_aggregate_errors = 1
 
 " Set the path to norminette (do no set if using norminette of 42 mac)
